@@ -16,9 +16,12 @@ double prob(std::vector<int> daten, double mu) {
 
 int main() {
     using namespace std;
+    
+    ifstream fin("datensumme.txt");
 
     ofstream fout("likelihood.txt");
-    ifstream fin("datensumme.txt");
+    ofstream fout2("nll.txt");
+
     int n_i;
     std::vector<int> daten;
     for(int i = 0 ; i < 234 ; ++i) {
@@ -29,6 +32,10 @@ int main() {
     cout << prob(daten, mu) << endl;
     for (double mu = 0; mu < 6; mu += 0.1) {
         fout << mu << " " << prob(daten, mu) << endl;
+        fout2 << mu << " " << -2*log(prob(daten, mu)) << endl;
+
+    
+    
     }
     fin.close();
 }
