@@ -21,6 +21,7 @@ int main() {
 
     ofstream fout("likelihood.txt");
     ofstream fout2("nll.txt");
+    ofstream fout3("deltanll.txt");
 
     int n_i;
     std::vector<int> daten;
@@ -33,9 +34,8 @@ int main() {
     for (double mu = 0; mu < 6; mu += 0.1) {
         fout << mu << " " << prob(daten, mu) << endl;
         fout2 << mu << " " << -2*log(prob(daten, mu)) << endl;
+        fout3 << mu << " " << 2*log(prob(daten, mu)) - 2*log(3.11538) << endl;
 
-    
-    
     }
     fin.close();
 }
