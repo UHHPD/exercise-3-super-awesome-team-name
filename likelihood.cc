@@ -41,8 +41,6 @@ int main() {
     double mu = 3.11538;
     cout << prob(daten, mu) << endl;
 
-    
-    double neg_2Lambda = 0;
     for (double mu = 0; mu < 6; mu += 0.1) {
         fout << mu << " " << prob(daten, mu) << endl;
         fout2 << mu << " " << -2*log(prob(daten, mu)) << endl;
@@ -58,11 +56,11 @@ int main() {
         }
         fout2 << mu << " " << nll << endl;
         fout3 << mu << " " << delta_nll << endl;
-
-        neg_2Lambda = -2*log(likelihood_ratio(daten, mu));
-        cout << neg_2Lambda << endl;
     }
 
+    double neg_2Lambda = -2*log(likelihood_ratio(daten, mu));
+    cout << neg_2Lambda << endl;
+    
     int ndof = daten.size() - 1; 
     double chi2_mean = ndof;
     double chi2_stddev = sqrt(2 * ndof);
