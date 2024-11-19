@@ -33,9 +33,17 @@ int main() {
     cout << prob(daten, mu) << endl;
     for (double mu = 0; mu < 6; mu += 0.1) {
         fout << mu << " " << prob(daten, mu) << endl;
-        fout2 << mu << " " << -2*log(prob(daten, mu)) << endl;
-        fout3 << mu << " " << 2*log(prob(daten, mu)) - 2*log(3.11538) << endl;
 
+        double nll = -2*log(prob(daten, mu));
+        double delta_nll = 2*log(prob(daten, mu)) - 2*log(3.11538);
+        if (std::isinf(nll)) {
+            nll = 0;
+        }
+        if (std::isinf(delta_nll)) {
+            delta_nll = 0;
+        }
+        fout2 << mu << " " << nll << endl;
+        fout3 << mu << " " << delta_nll << endl;
     }
     fin.close();
 }
