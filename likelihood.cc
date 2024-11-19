@@ -42,6 +42,9 @@ int main() {
     cout << prob(daten, mu) << endl;
     for (double mu = 0; mu < 6; mu += 0.1) {
         fout << mu << " " << prob(daten, mu) << endl;
+        fout2 << mu << " " << -2*log(prob(daten, mu)) << endl;
+        fout3 << mu << " " << 2*log(prob(daten, mu)) - 2*log(3.11538) << endl;
+        cout << -2*log(prob(daten, mu)/prob(daten, daten))<< endl;
 
         double nll = -2*log(prob(daten, mu));
         double delta_nll = 2*log(prob(daten, mu)) - 2*log(3.11538);
