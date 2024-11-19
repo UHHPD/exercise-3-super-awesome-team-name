@@ -14,6 +14,15 @@ double prob(std::vector<int> daten, double mu) {
     return L;
 }
 
+double likelihood_ratio(std::vector<int> daten, double mu) {
+    double L_k = 1;
+    for(int i :daten) {
+        L_k = poisson(i, i);
+    }
+    double Delta = L_k/prob(daten, mu);
+    return Delta;
+}
+
 int main() {
     using namespace std;
     
@@ -44,6 +53,8 @@ int main() {
         }
         fout2 << mu << " " << nll << endl;
         fout3 << mu << " " << delta_nll << endl;
+
+        cout << -2*log(likelihood_ratio(daten, mu)) << endl;
     }
     fin.close();
 }
