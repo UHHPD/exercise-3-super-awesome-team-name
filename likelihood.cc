@@ -39,7 +39,7 @@ int main() {
         daten.push_back(n_i);
     }
     double mu = 3.11538;
-    cout << prob(daten, mu) << endl;
+    // cout << prob(daten, mu) << endl;
 
     
     double neg_2Lambda = 0;
