@@ -19,8 +19,8 @@ double likelihood_ratio(std::vector<int> daten, double mu) {
     for(int i :daten) {
         L_k = poisson(i, i);
     }
-    double Delta = L_k/prob(daten, mu);
-    return Delta;
+    double Lambda = prob(daten, mu)/L_k;
+    return Lambda;
 }
 
 int main() {
@@ -40,6 +40,9 @@ int main() {
     }
     double mu = 3.11538;
     cout << prob(daten, mu) << endl;
+
+    
+    double neg_2Lambda = 0;
     for (double mu = 0; mu < 6; mu += 0.1) {
         fout << mu << " " << prob(daten, mu) << endl;
         fout2 << mu << " " << -2*log(prob(daten, mu)) << endl;
@@ -57,7 +60,14 @@ int main() {
         fout2 << mu << " " << nll << endl;
         fout3 << mu << " " << delta_nll << endl;
 
-        cout << -2*log(likelihood_ratio(daten, mu)) << endl;
+        neg_2Lambda = -2*log(likelihood_ratio(daten, mu));
+        cout << neg_2Lambda << endl;
     }
+
+    int ndof = daten.size() - 1; 
+    double chi2_mean = ndof;
+    double chi2_stddev = sqrt(2 * ndof);
+    double z = (neg_2Lambda - chi2_mean) / chi2_stddev;
+    cout << z << endl;
     fin.close();
 }
