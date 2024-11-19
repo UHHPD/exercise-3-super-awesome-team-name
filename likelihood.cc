@@ -65,6 +65,6 @@ int main() {
     double chi2_mean = ndof;
     double chi2_stddev = sqrt(2 * ndof);
     double z = (neg_2Lambda - chi2_mean) / chi2_stddev;
-    
+    cout << z << endl;
     fin.close();
 }
